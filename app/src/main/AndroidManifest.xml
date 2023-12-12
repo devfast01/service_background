@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,9 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Background_service"
         tools:targetApi="34">
-<!--        <activity-->
-<!--            android:name=".Example_2.Example2_activity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".Example_3.Example3_activity"
+            android:exported="false" />
+        <!-- <activity -->
+        <!-- android:name=".Example_2.Example2_activity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".Example_2.Example2_activity"
             android:exported="true">
@@ -32,9 +34,8 @@
         <service
             android:name=".Example_2.MyService_2"
             android:exported="true"
-            android:permission="FOREGROUND_SERVICE"
-            android:foregroundServiceType="mediaPlayback">
-        </service>
+            android:foregroundServiceType="mediaPlayback"
+            android:permission="FOREGROUND_SERVICE"></service>
     </application>
 
 </manifest>
