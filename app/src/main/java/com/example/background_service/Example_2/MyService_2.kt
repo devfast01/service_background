@@ -5,7 +5,6 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.app.PendingIntent.FLAG_MUTABLE
 import android.app.Service
 import android.content.Intent
 import android.content.pm.ServiceInfo
@@ -47,7 +46,7 @@ class MyService_2 : Service() {
     @SuppressLint("UnspecifiedImmutableFlag")
     private fun showNotification() {
         val notificationIntent = Intent(this, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent,  FLAG_MUTABLE)
+        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent,  PendingIntent.FLAG_IMMUTABLE)
 
         val notification = Notification
             .Builder(this, CHANNEL_ID)
@@ -56,7 +55,7 @@ class MyService_2 : Service() {
             .setContentIntent(pendingIntent)
             .build()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            startForeground(MUSIC_NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
+            startForeground(MUSIC_NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION)
         }
     }
 

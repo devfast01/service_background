@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
 
     <application
         android:allowBackup="true"
@@ -14,15 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Background_service"
-        tools:targetApi="34">
-        <activity
-            android:name=".Example_3.Example3_activity"
-            android:exported="false" />
+        tools:targetApi="30">
+<!--        <activity-->
+<!--            android:name=".Example_3.Example3_activity"-->
+<!--            android:exported="false" />-->
         <!-- <activity -->
         <!-- android:name=".Example_2.Example2_activity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".Example_2.Example2_activity"
+            android:name=".Example_3.Example3_activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,11 +30,9 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".Example_2.MyService_2"
-            android:exported="true"
-            android:foregroundServiceType="mediaPlayback"
-            android:permission="FOREGROUND_SERVICE"></service>
+        <service android:name=".Example_3.ForegroundService"
+            tools:node="replace">
+        </service>
     </application>
 
 </manifest>
