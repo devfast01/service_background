@@ -12,7 +12,6 @@ import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
-import android.os.RemoteException
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
@@ -21,7 +20,7 @@ import com.example.background_service.R
 
 
 class ForegroundService : Service() {
-    private val CHANNELID = "ForegroundService Kotlin"
+    private val channelid = "12"
     companion object {
         fun startService(context: Context, message: String) {
             val startIntent = Intent(context, ForegroundService::class.java)
@@ -45,7 +44,7 @@ class ForegroundService : Service() {
             this,
             0, notificationIntent, PendingIntent.FLAG_IMMUTABLE
         )
-        val notification = NotificationCompat.Builder(this, CHANNELID)
+        val notification = NotificationCompat.Builder(this, channelid)
             .setContentTitle("Foreground Service Kotlin Example")
             .setContentText(input)
             .setSmallIcon(R.drawable.ic_alaram)
@@ -62,7 +61,7 @@ class ForegroundService : Service() {
     }
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val serviceChannel = NotificationChannel(CHANNELID, "Foreground Service Channel",
+            val serviceChannel = NotificationChannel(channelid, "Foreground Service Channel",
                 NotificationManager.IMPORTANCE_DEFAULT)
             val manager = getSystemService(NotificationManager::class.java)
             manager!!.createNotificationChannel(serviceChannel)
