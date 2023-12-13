@@ -36,7 +36,11 @@ class MyService_2 : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         showNotification()
-
+        if(musicPlayer.isPlaying){
+            musicPlayer.start()
+        }else {
+            musicPlayer.stop()
+        }
         return START_STICKY
     }
 
