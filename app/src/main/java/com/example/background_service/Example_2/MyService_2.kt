@@ -7,15 +7,13 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
-import android.content.pm.ServiceInfo
-import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION
 import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.IBinder
 import androidx.annotation.RequiresApi
+import androidx.core.app.ServiceCompat
 import com.example.background_service.Example_2.Constants.CHANNEL_ID
-import com.example.background_service.Example_2.Constants.MUSIC_NOTIFICATION_ID
 import com.example.background_service.MainActivity
 import com.example.background_service.R
 
@@ -43,7 +41,7 @@ class MyService_2 : Service() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("UnspecifiedImmutableFlag")
+    @SuppressLint("UnspecifiedImmutableFlag", "InlinedApi")
     private fun showNotification() {
         val notificationIntent = Intent(this, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent,  PendingIntent.FLAG_IMMUTABLE)
@@ -54,15 +52,13 @@ class MyService_2 : Service() {
             .setSmallIcon(R.drawable.ic_alaram)
             .setContentIntent(pendingIntent)
             .build()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            startForeground(MUSIC_NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION)
-        }
+
+        ServiceCompat.startForeground(this,2, notification,FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
+
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("ObsoleteSdkInt")
     private fun createNotificationChanel() {
-        if (Build.VERSION.SDK_INT>=23) {
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q) {
             val serviceChannel = NotificationChannel(
                 CHANNEL_ID, "My Service Channel",
                 NotificationManager.IMPORTANCE_DEFAULT

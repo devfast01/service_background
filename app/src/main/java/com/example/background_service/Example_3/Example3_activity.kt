@@ -2,6 +2,7 @@ package com.example.background_service.Example_3
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.example.background_service.R
 import com.example.background_service.databinding.ActivityExample3Binding
@@ -15,9 +16,11 @@ class Example3_activity : AppCompatActivity() {
 
         binding.buttonStart.setOnClickListener(View.OnClickListener {
             ForegroundService.startService(this, "Foreground Service is running...")
+            Log.e("SERVICE", "START")
         })
         binding.buttonStop.setOnClickListener(View.OnClickListener {
             ForegroundService.stopService(this)
+            Log.e("SERVICE", "STOP")
         })
     }
 }

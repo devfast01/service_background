@@ -15,12 +15,13 @@ import android.os.IBinder
 import android.os.RemoteException
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import com.example.background_service.R
 
 
 class ForegroundService : Service() {
-    private val CHANNEL_ID = "ForegroundService Kotlin"
+    private val CHANNELID = "ForegroundService Kotlin"
     companion object {
         fun startService(context: Context, message: String) {
             val startIntent = Intent(context, ForegroundService::class.java)
@@ -33,7 +34,7 @@ class ForegroundService : Service() {
         }
     }
     @SuppressLint("SuspiciousIndentation")
-    @RequiresApi(Build.VERSION_CODES.Q)
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         //do heavy work on a background thread
         createNotificationChannel()
@@ -44,14 +45,14 @@ class ForegroundService : Service() {
             this,
             0, notificationIntent, PendingIntent.FLAG_IMMUTABLE
         )
-        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+        val notification = NotificationCompat.Builder(this, CHANNELID)
             .setContentTitle("Foreground Service Kotlin Example")
             .setContentText(input)
             .setSmallIcon(R.drawable.ic_alaram)
             .setContentIntent(pendingIntent)
             .build()
 
-            startForeground(1, notification,ServiceInfo.FOREGROUND_SERVICE_TYPE_MANIFEST)
+        ServiceCompat.startForeground(this,1, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
 
         //stopSelf();
         return START_NOT_STICKY
@@ -61,7 +62,7 @@ class ForegroundService : Service() {
     }
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val serviceChannel = NotificationChannel(CHANNEL_ID, "Foreground Service Channel",
+            val serviceChannel = NotificationChannel(CHANNELID, "Foreground Service Channel",
                 NotificationManager.IMPORTANCE_DEFAULT)
             val manager = getSystemService(NotificationManager::class.java)
             manager!!.createNotificationChannel(serviceChannel)
