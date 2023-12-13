@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.background_service.Example_2
 
 import android.annotation.SuppressLint
@@ -19,8 +21,9 @@ import com.example.background_service.MainActivity
 import com.example.background_service.R
 
 class MyService_2 : Service() {
-    private lateinit var musicPlayer: MediaPlayer
 
+    private lateinit var musicPlayer: MediaPlayer
+    private var play: Boolean? = false
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
@@ -36,13 +39,20 @@ class MyService_2 : Service() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
+
         showNotification()
-        Log.e("music state", musicPlayer.currentPosition.toString())
-        if(musicPlayer.isPlaying){
+        if(play == true){
             musicPlayer.stop()
+            stopForeground(true)
+            stopSelf()
+            play = false
+            Log.e("music state", play.toString())
         }else {
+            play = true
             musicPlayer.start()
+            Log.e("music state", play.toString())
         }
+
         return START_STICKY
     }
 
@@ -50,7 +60,8 @@ class MyService_2 : Service() {
     @SuppressLint("UnspecifiedImmutableFlag", "InlinedApi")
     private fun showNotification() {
         val notificationIntent = Intent(this, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent,  PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent =
+            PendingIntent.getActivity(this, 3, notificationIntent, PendingIntent.FLAG_IMMUTABLE)
 
         val notification = Notification
             .Builder(this, CHANNEL_ID)
@@ -59,17 +70,16 @@ class MyService_2 : Service() {
             .setContentIntent(pendingIntent)
             .build()
 
-        ServiceCompat.startForeground(this,2, notification,FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
+        ServiceCompat.startForeground(this, 2, notification, FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
 
     }
 
     private fun createNotificationChanel() {
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val serviceChannel = NotificationChannel(
                 CHANNEL_ID, "My Service Channel",
                 NotificationManager.IMPORTANCE_DEFAULT
             )
-
             val manager = getSystemService(NotificationManager::class.java)
 
             manager.createNotificationChannel(serviceChannel)
@@ -81,4 +91,5 @@ class MyService_2 : Service() {
         musicPlayer.isLooping = true
         musicPlayer.setVolume(100F, 100F)
     }
+
 }

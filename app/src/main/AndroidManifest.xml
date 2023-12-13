@@ -15,9 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Background_service"
         tools:targetApi="34">
-        <activity
-            android:name=".Example_4.Example4_activity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".Example_4.Example4_activity"-->
+<!--            android:exported="false" />-->
         <!-- <activity -->
         <!-- android:name=".Example_3.Example3_activity" -->
         <!-- android:exported="false" /> -->
@@ -25,7 +25,7 @@
         <!-- android:name=".Example_2.Example2_activity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".Example_3.Example3_activity"
+            android:name=".Example_4.Example4_activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,9 +35,7 @@
         </activity>
 
         <service
-            android:name=".Example_3.ForegroundService"
-            android:foregroundServiceType="mediaPlayback"
-            />
+            android:name=".Example_4.newService"/>
     </application>
 
 </manifest>
