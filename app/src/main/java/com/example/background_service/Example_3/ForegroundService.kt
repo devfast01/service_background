@@ -55,7 +55,7 @@ class ForegroundService : Service() {
         ServiceCompat.startForeground(this,1, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK)
 
         //stopSelf();
-        return START_NOT_STICKY
+        return START_STICKY
     }
     override fun onBind(intent: Intent): IBinder? {
         return null

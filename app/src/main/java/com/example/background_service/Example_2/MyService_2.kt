@@ -11,6 +11,7 @@ import android.content.pm.ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.IBinder
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.ServiceCompat
 import com.example.background_service.Example_2.Constants.CHANNEL_ID
@@ -36,10 +37,11 @@ class MyService_2 : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         showNotification()
+        Log.e("music state", musicPlayer.currentPosition.toString())
         if(musicPlayer.isPlaying){
-            musicPlayer.start()
-        }else {
             musicPlayer.stop()
+        }else {
+            musicPlayer.start()
         }
         return START_STICKY
     }
