@@ -15,6 +15,7 @@ class newService : Service() {
         player = MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI)
         player.isLooping = true
         player.start()
+
         return START_STICKY
     }
 
