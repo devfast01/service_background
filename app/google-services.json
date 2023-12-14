@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "398842272261",
+    "project_id": "spotify-clone-230db",
+    "storage_bucket": "spotify-clone-230db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398842272261:android:31a847de9ce5d61be95a6c",
+        "android_client_info": {
+          "package_name": "com.example.background_service"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9IFfjEmnUzBZe1orLg4z4BD5WbxmA_9U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398842272261:android:0b2b76e5d7ab1f55e95a6c",
+        "android_client_info": {
+          "package_name": "tmcars.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9IFfjEmnUzBZe1orLg4z4BD5WbxmA_9U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

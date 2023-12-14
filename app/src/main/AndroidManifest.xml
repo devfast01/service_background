@@ -15,9 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Background_service"
         tools:targetApi="34">
-<!--        <activity-->
-<!--            android:name=".Example_4.Example4_activity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".sptify.Spotify_main"
+            android:exported="false" />
+        <!-- <activity -->
+        <!-- android:name=".Example_4.Example4_activity" -->
+        <!-- android:exported="false" /> -->
         <!-- <activity -->
         <!-- android:name=".Example_3.Example3_activity" -->
         <!-- android:exported="false" /> -->
@@ -35,7 +38,8 @@
         </activity>
 
         <service
-            android:name=".Example_4.newService"/>
+            android:name=".Example_4.newService"
+            android:foregroundServiceType="mediaPlayback" />
     </application>
 
 </manifest>
