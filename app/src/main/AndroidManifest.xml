@@ -15,9 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Background_service"
         tools:targetApi="34">
-        <activity
-            android:name=".sptify.Spotify_main"
-            android:exported="false" />
+
         <!-- <activity -->
         <!-- android:name=".Example_4.Example4_activity" -->
         <!-- android:exported="false" /> -->

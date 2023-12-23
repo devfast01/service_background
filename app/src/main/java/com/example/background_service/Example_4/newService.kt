@@ -50,7 +50,7 @@ class newService : Service() {
         val pendingIntent =
             PendingIntent.getActivity(this, 3, notificationIntent, PendingIntent.FLAG_IMMUTABLE)
 
-        val notification = Notification
+            val notification = Notification
             .Builder(this, Constants.CHANNEL_ID)
             .setContentText("Music Player")
             .setSmallIcon(R.drawable.ic_alaram)
